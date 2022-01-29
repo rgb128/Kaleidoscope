@@ -18,7 +18,7 @@ document.addEventListener('click', e => {
         addRandomRect();
         interval = setInterval(() => {
             addRandomRect();
-        }, 314);
+        }, 200);
     } else if (state === 0) {
         state = 1;
         const container = document.getElementById('container');
@@ -39,7 +39,19 @@ document.addEventListener('click', e => {
             container.classList.remove('hidden-item');
             canvas.classList.add('hidden-item');
             //todo fix animations
+            copyAllChildren(container, child, childCount);
         }, 0);
     }
 });
+
+async function copyAllChildren(container, child, childrenCount) {
+    const angleDelta = 360 / childrenCount;
+    for (let i = 1; i < childrenCount; i++) {
+        await sleep(200);
+        const nextChild = child.cloneNode(true);
+        nextChild.style.transform = `rotate(${i * angleDelta}deg)`;
+        container.appendChild(nextChild);
+    }
+    container.classList.add('animating');
+}
 

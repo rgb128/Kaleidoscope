@@ -20,3 +20,11 @@ function randomInt(from, to) {
     const res = from + Math.floor(delta * rnd);
     return Math.round(res);
 }
+
+function sleep(timeout) {
+    return new Promise((resolve, reject) => {
+        setTimeout(() => {
+            resolve();
+        }, timeout);
+    });
+}

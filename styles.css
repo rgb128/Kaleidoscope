@@ -5,6 +5,10 @@
     overflow: hidden;
 }
 
+body {
+    background-color: black;
+}
+
 .hidden-item {
     display: none !important;
 }
@@ -27,6 +31,7 @@
     width: 100vw;
     height: 100vh;
     z-index: 1;
+    overflow: visible;
 }
 #container > .child {
     position: absolute;
@@ -38,5 +43,31 @@
     background-size: 100%;
     /* transition: top .5s ease-out, clip-path .5s ease-out; */
     transition: top .5s ease-out;
+    background-position-x: 0px;
+}
+
+#container.animating {
+    animation: kaleidoscope_rotating 5s linear 0s infinite;
+}
+#container.animating > .child {
+    animation: kaleidoscope_background 5s linear 0s infinite;
+}
+
+
+@keyframes kaleidoscope_background {
+    from {
+        background-position-y: 100vh;
+    }
+    to {
+        background-position-y: 0vh;
+    }
+}
+@keyframes kaleidoscope_rotating {
+    from {
+        transform: rotate(0deg);
+    }
+    to {
+        transform: rotate(360deg);
+    }
 }
 
